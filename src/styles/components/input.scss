@@ -1,0 +1,35 @@
+.input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  padding-right: 2.25rem;
+  border-radius: var(--border-rounded);
+  border: 1px solid grey;
+  transition: all 250ms ease-in-out;
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-green-500);
+  }
+
+  &__wrapper {
+    position: relative;
+    max-width: 17.5rem;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0.625rem;
+    top: 50%;
+    display: flex;
+    svg: {
+      transform: translateY(-50%);
+    }
+
+    &--sm {
+      width: 4rem;
+    }
+
+    &--md {
+      width: 6rem;
+    }
+  }
+}
