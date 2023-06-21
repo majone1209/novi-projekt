@@ -1,0 +1,19 @@
+.progressbar {
+  background-color: #ffc26f;
+  width: 100%;
+  border-radius: 10px;
+
+  &__bar {
+    width: 3%;
+    height: 30px;
+    background-color: #c38154;
+    border-radius: 10px;
+    transition: 250ms ease-in;
+    box-shadow: #ffc26f;
+  }
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+}

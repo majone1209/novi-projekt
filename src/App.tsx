@@ -8,7 +8,8 @@ import Layout from "./components/layout";
 import Home from "./features/home/home";
 import NoMatch from "./features/no-match/no-match";
 import Contact from "./features/contact/contact";
-import Progressbar from "./features/progress-bar/progress-bar";
+import Progressbar from "./features/progress-bar/progressbarpage";
+import ProgressbarPage from "./features/progress-bar/progressbarpage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="progress-bar" element={<Progressbar />} />
+          <Route path="progress-bar" element={<ProgressbarPage />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
