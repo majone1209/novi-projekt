@@ -15,6 +15,7 @@ body {
   --color-green-500: #27ae60;
   --color-blue-500: #3498db;
   --color-orange-500: #c28a4e;
+  --color-gray-300: #c2c2c0;
 
   //border
   --border-rounded: 0.5rem;
@@ -27,3 +28,5 @@ body {
 @import "./components/input.scss";
 @import "./components/progressbar.scss";
 @import "./components/sidebar.scss";
+@import "./components/loader.scss";
+@import "./components/select.scss";

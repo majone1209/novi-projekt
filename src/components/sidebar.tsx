@@ -18,6 +18,10 @@ const linkList: LinkType[] = [
     path: "/loader",
     label: "Loader",
   },
+  {
+    path: "/select",
+    label: "Select Page",
+  },
 ];
 
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
