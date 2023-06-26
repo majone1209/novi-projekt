@@ -1,0 +1,15 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &__item {
+    background-color: var(--color-orange-500);
+    font-size: 1.25rem;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

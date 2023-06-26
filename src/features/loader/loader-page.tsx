@@ -5,20 +5,24 @@ import Loader from "../../components/loader";
 import { useState } from "react";
 
 const LoaderPage = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-
+  const [loaderOpen, setLoaderOpen] = useState<Boolean>(false);
   const handleLoader = () => {
     setLoaderOpen(!loaderOpen);
   };
-
   return (
     <Container>
-      <h3>Loading...</h3>
-      <Loader isActive={loading} />
-      <Button text={"Open"} onClick={() => setLoading} />
-      {loading ? <div></div> : <></>}
+      <h1>Loader</h1>
+      <Devider />
+      <Button onClick={() => handleLoader()} text="Want to see a loader?" />
+      {loaderOpen ? (
+        <div>
+          <Devider />
+          <Loader isActive={true} />
+        </div>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 };
-
 export default LoaderPage;

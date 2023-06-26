@@ -22,7 +22,7 @@ const Select = ({
         className={`select__action ${isActive ? "isActive" : ""}`}
         onClick={() => setIsActive(!isActive)}
       >
-        {activeOption ? activeOption.label placeholder}
+        {activeOption ? activeOption.label : placeholder}
         <IconChevronDown />
       </div>
       {isActive && (

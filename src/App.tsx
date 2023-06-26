@@ -11,6 +11,7 @@ import Contact from "./features/contact/contact";
 import ProgressbarPage from "./features/progress-bar/progressbarpage";
 import LoaderPage from "./features/loader/loader-page";
 import SelectPage from "./features/select-page/select-page";
+import Animals from "./features/animals/animals";
 
 function App() {
   return (
@@ -18,10 +19,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="animals" element={<Animals />} />
           <Route path="contact" element={<Contact />} />
           <Route path="progress-bar" element={<ProgressbarPage />} />
           <Route path="loader" element={<LoaderPage />} />
           <Route path="select" element={<SelectPage />} />
+
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
