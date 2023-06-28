@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-  
+
   &__item {
     background-color: var(--color-orange-500);
     font-size: 1.25rem;
@@ -25,6 +25,12 @@
       background-color: var(--color-orange-500);
       color: rgb(79, 78, 78);
       border-color: rgb(148, 97, 4);
+    }
+
+    &.isDisabled {
+      opacity: 0.5;
+      pointer-events: none;
+      user-select: none;
     }
   }
 }

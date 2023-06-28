@@ -16,4 +16,34 @@
   &--blue {
     background-color: var(--color-blue-500);
   }
+
+  &--floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: var(--color-green-500);
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+    box-shadow: 0 0.125rem 0.75rem var(--color-red-500);
+
+    @media (min-width: $media-sm) {
+      bottom: 4rem;
+      right: 4rem;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    & svg {
+      width: 2rem;
+    }
+  }
 }

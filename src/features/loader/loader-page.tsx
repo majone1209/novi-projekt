@@ -8,12 +8,15 @@ const LoaderPage = () => {
   const [loaderOpen, setLoaderOpen] = useState<Boolean>(false);
   const handleLoader = () => {
     setLoaderOpen(!loaderOpen);
+    setTimeout(() => {
+      setLoaderOpen(false);
+    }, 300);
   };
   return (
     <Container>
       <h1>Loader</h1>
       <Devider />
-      <Button onClick={() => handleLoader()} text="Want to see a loader?" />
+      <Button onClick={() => handleLoader()} text="Open loader" />
       {loaderOpen ? (
         <div>
           <Devider />
