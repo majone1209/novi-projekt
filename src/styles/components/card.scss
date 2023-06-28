@@ -28,11 +28,12 @@
   &__row {
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
 
     svg {
       display: block;
       margin-right: 0.5rem;
+      width: 1.5rem;
+      align-self: flex-start;
     }
     :last-child {
       margin-bottom: 0;

@@ -3,6 +3,7 @@ import Container from "../../components/container";
 import AnimalCard from "./animalCard";
 import Loader from "../../components/loader";
 import Pagination from "../../components/pagination";
+import Devider from "../../components/devider";
 
 export type AnimalType = {
   name: string;
@@ -14,7 +15,7 @@ export type AnimalType = {
 
 //rows per page (limit koliko itema vidimo jednom)
 const rpp = 8;
-const noOfImtems = 20;
+const noOfItems = 20;
 const numberOfPages = Math.ceil(20 / 8);
 
 const Animals = () => {
@@ -24,20 +25,18 @@ const Animals = () => {
 
   const getAnimalData = () => {
     fetch(`http://localhost:3000/animals?_page=${page}&_limit=${rpp}`)
-      .then((response) => {
-        return response.json();
-      })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
       .then((data) => {
-        console.log(data);
         setTimeout(() => {
           setAnimalData(data);
-
           setLoading(false);
         }, 2000);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -47,15 +46,15 @@ const Animals = () => {
   return (
     <Container>
       <Loader isActive={loading} />
-
       <h1>Animals</h1>
-
-      <div className="grid grid--primary">
+      <Devider />
+      <div>Imamo itema: {animalData.length}</div>
+      <div className="grid grid--primary type--san-serif">
         {animalData.map((animal) => {
           return <AnimalCard key={animal.name} animal={animal} />;
         })}
       </div>
-      <Pagination />
+      <Pagination onPaginate={(activePage) => console.log("active page: ", activePage)} />
     </Container>
   );
 };
