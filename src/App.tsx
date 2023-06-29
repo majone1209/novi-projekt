@@ -26,7 +26,7 @@ function App() {
           <Route path="select" element={<SelectPage />} />
 
           <Route path="animals" element={<Animals />} />
-          <Route path="animals/:new" element={<AnimalCreate />} />
+          <Route path="animals/new" element={<AnimalCreate />} />
           <Route
             path="animals/:animalId"
             element={<>Došli mso na stranicu neke životinje</>}

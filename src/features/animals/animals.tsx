@@ -5,6 +5,8 @@ import Loader from "../../components/loader";
 import Pagination from "../../components/pagination";
 import Devider from "../../components/devider";
 import FolatingButton from "../../components/folating-button";
+import Select from "../../components/select";
+import { OptionType } from "../select-page/select-page";
 
 export type AnimalType = {
   name: string;
@@ -14,15 +16,28 @@ export type AnimalType = {
   habitat: string;
 };
 
-//rows per page (limit koliko itema vidimo jednom)
-const rpp = 8;
 const noOfItems = 20;
-const numberOfPages = Math.ceil(noOfItems / rpp);
+const rppOptions: OptionType[] = [
+  {
+    label: "4 životinje",
+    value: "4",
+  },
+  {
+    label: "8 životinje",
+    value: "8",
+  },
+  {
+    label: "12 životinje",
+    value: "12",
+  },
+];
 
 const Animals = () => {
   const [animalData, setAnimalData] = useState<AnimalType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
+  //rows per page (limit koliko itema vidimo od jednom)
+  const [rpp, setRpp] = useState<number>(8);
 
   const getAnimalData = () => {
     setLoading(true);
@@ -42,15 +57,26 @@ const Animals = () => {
   };
 
   useEffect(() => {
-    getAnimalData();
-  }, [page]);
+    const numberOfPages = Math.ceil(noOfItems / rpp);
+    if (page > numberOfPages) {
+      setPage(numberOfPages);
+    } else {
+      getAnimalData();
+    }
+  }, [page, rpp]);
 
   return (
     <Container>
       <Loader isActive={loading} />
-      <h1>Animals</h1>
+      <div className="animals__header">
+        <h1 className="animals__title">Animals</h1>
+        <Select
+          options={rppOptions}
+          onChange={(activeRpp) => setRpp(Number(activeRpp.value))}
+          defaultValue={rppOptions[1]}
+        />
+      </div>
       <Devider />
-      <div>Imamo itema: {animalData.length}</div>
       <div className="grid grid--primary type--san-serif">
         {animalData.map((animal) => {
           return <AnimalCard key={animal.name} animal={animal} />;
@@ -58,7 +84,7 @@ const Animals = () => {
       </div>
       <Pagination
         activePage={page}
-        numberOfPages={numberOfPages}
+        numberOfPages={Math.ceil(noOfItems / rpp)}
         onPaginate={(activePage) => setPage(activePage)}
       />
       <FolatingButton />

@@ -25,7 +25,7 @@ const headerLinks: LinkType[] = [
 const Header = ({ toggleSidebar, onClose }: HeaderProps) => {
   return (
     <div>
-      <header className="header">
+      <header className="header__wrapper">
         <img
           onClick={toggleSidebar}
           className="header__logo"

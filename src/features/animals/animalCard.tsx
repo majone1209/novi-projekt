@@ -18,7 +18,7 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
           " ",
           "-"
         )}`}
-        alt=""
+        alt="image animal"
       />
       <div>
         <div className="card__title">{name}</div>

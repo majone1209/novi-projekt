@@ -10,12 +10,24 @@ body {
 :root {
   //colors
   --color-white: #fff;
+  --color-white-35: rgba(255, 255, 255, 0.35);
   --color-black: #333;
+  --color-gray-100: #f1f1f1;
+  --color-gray-300: #ccc;
+  --color-gray-500: #999;
+  --color-gray-800: #4b4b4b;
+  --color-gray-900: #303030;
+  --color-gray-800-25: rgba(75, 75, 75, 0.25);
+  --color-gray-900: #222222;
   --color-red-500: #c0392b;
+  --color-red-600: #aa2a1c;
   --color-green-500: #27ae60;
-  --color-blue-500: #3498db;
-  --color-orange-500: #c28a4e;
-  --color-gray-300: #c2c2c0;
+  --color-green-600: #158f48;
+  --color-blue-500: #2980b9;
+  --color-blue-500: #136297;
+  --color-orange-200: #ffddb8;
+  --color-orange-500: #fd9e35;
+  --color-orange-600: #da801a;
 
   //border
   --border-rounded: 0.5rem;
@@ -38,6 +50,13 @@ $media-lg: 64em;
 @import "./components/select.scss";
 @import "./components/card.scss";
 @import "./components/pagination.scss";
+@import "./components/field.scss";
+@import "./components/modal.scss";
+@import "./components/no-match.scss";
+
+//pages
+@import "./page/progress-bar.scss";
+@import "./page/animals.scss";
 
 //utils
 @import "./utils/grid.scss";

@@ -15,7 +15,7 @@ const Pagination = ({
   return (
     <div className="pagination">
       <span
-        onClick={() => onPaginate(activePage + 1)}
+        onClick={() => onPaginate(activePage - 1)}
         className={`pagination__item ${activePage <= 1 ? "isDisabled" : ""}`}
       >
         <ChewronLeft />

@@ -6,15 +6,17 @@ type SelectProps = {
   options: OptionType[];
   onChange: (option: OptionType) => void;
   placeholder?: string;
+  defaultValue?: OptionType;
 };
 
 const Select = ({
   options,
   onChange,
   placeholder = "Select a option",
+  defaultValue,
 }: SelectProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [activeOption, setActiveOption] = useState<OptionType | null>(null);
+  const [activeOption, setActiveOption] = useState<OptionType | null>( defaultValue ? defaultValue : null);
 
   return (
     <div className="select">
@@ -34,6 +36,7 @@ const Select = ({
                 className="select__list__item"
                 onClick={() => {
                   onChange(option);
+                  setActiveOption(option);
                   setIsActive(false);
                 }}
               >

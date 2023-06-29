@@ -5,17 +5,28 @@ type InputProps = {
   placeholder?: string;
   icon?: ReactNode;
   size?: "sm" | "md" | "lg";
+  value: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+  name?: string;
 };
 
-const Input = ({ placeholder = "", icon, size = "md" }: InputProps) => {
+const Input = ({ placeholder = "", icon, size = "md", value,
+onChange,
+disabled = false,
+name, }: InputProps) => {
   return (
     <div className="input__wrapper">
-      <div className="input__icon--sm input__icon--md">{icon}</div>
       <input
-        placeholder={placeholder}
-        className={`input ${icon}`}
-        type="text"
+      onChange={(e) => onChange(e.target.value)}
+      value={value}
+      id={name}
+      placeholder={placeholder}
+      className={`input input--${size} ${icon && "input--hasIcon"}`}
+      type="text"
+      disabled={disabled}
       />
+      <div className="input__icon--sm input__icon--md">{icon}</div>
     </div>
   );
 };

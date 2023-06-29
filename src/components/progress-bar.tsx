@@ -2,30 +2,31 @@ import { useState } from "react";
 
 type ProgressbarProps = {
   progress: number;
+  onFinish?: () => void;
 };
 
-const Progressbar = ({ progress }: ProgressbarProps) => {
-  const [plus, setPlus] = useState();
-  const [minus, setMinus] = useState();
-
-  const handleProgress = () => {
-    if (progress < 0) {
-      return "0%";
-    } else if (progress > 100) {
-      return "100%";
+const Progressbar = ({ progress, onFinish }: ProgressbarProps) => {
+  const handleProgress = (progress: number) => {
+    if (progress === 100) {
+      onFinish && onFinish();
     }
-    return progress + "%";
+    if (progress > 100) {
+      return "100%";
+    } else if (progress < 0) {
+      return "0%";
+    }
+    return `${progress}%`;
   };
   return (
     <div>
-      <div className="progressbar">
+      <div className={`progressbar ${
+        progress === 100 ? "progressbar--finished" : ""
+      }`}>
         <div
-          id="bar"
           className="progressbar__bar"
-          style={{ width: handleProgress() }}
+          style={{ width: handleProgress(progress) }}
         ></div>
-        <button>-</button>
-        <button>+</button>
+        
       </div>
     </div>
   );
