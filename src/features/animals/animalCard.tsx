@@ -5,10 +5,11 @@ import imgHabitat from "./../../assets/habitat.png";
 
 type AnimalCardProps = {
   animal: AnimalType;
+  onDelete: (id: string) => void;
 };
 
-const AnimalCard = ({ animal }: AnimalCardProps) => {
-  const { name, animalClass, diet, species, habitat } = animal;
+const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
+  const { name, animalClass, diet, species, habitat, id } = animal;
   return (
     <div className="card">
       <img
@@ -36,6 +37,7 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
         <img src={imgHabitat} alt="habitat animal" />
         <span>{habitat}</span>
       </div>
+      <Button text="Delete" color="red" onClick={() => onDelete(id)} />
     </div>
   );
 };

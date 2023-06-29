@@ -3,8 +3,12 @@ type ButtonProps = {
   color?: "red" | "green" | "blue";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = ({ text, color = "green" }: ButtonProps) => {
-  return <button className={`btn btn--${color}`}>{text}</button>;
+const Button = ({ text, color = "green", ...props }: ButtonProps) => {
+  return (
+    <button className={`btn btn--${color}`} {...props}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

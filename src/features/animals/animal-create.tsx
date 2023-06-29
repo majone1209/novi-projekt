@@ -6,7 +6,12 @@ import { AnimalType } from "./animals";
 import { ValuesType } from "../contact/types";
 import Button from "../../components/button";
 
+const dataHeaders = {
+  "Content-Type": "application/json",
+};
+
 const initialData: AnimalType = {
+  id: "",
   name: "",
   species: "",
   animalClass: "",
@@ -16,6 +21,7 @@ const initialData: AnimalType = {
 
 const AnimalCreate = () => {
   const [inputsValue, setInputsValue] = useState<ValuesType>(initialData);
+  const [error, setError] = useState("");
 
   const handleInputsValue = (value: string, id: string) => {
     const newState: ValuesType = { ...inputsValue };
@@ -23,10 +29,65 @@ const AnimalCreate = () => {
     setInputsValue(newState);
   };
 
+  const onSubmit = (inputsValue: ValuesType) => {
+    let getOut = false;
+    let errorInputs = "";
+
+    //const keys = Object.keys(inputsValue);
+
+    //
+    // Object.keys(inputsValue).forEach((key) => {
+    // console.log(inputsValue[key]);
+
+    // if (inputsValue[key] === "") {
+    //   getOut = true;
+    //    alert("ne može biti prazno");
+    //  }
+    //});
+
+    //mapiramo sve keyeje i provjeravamo koji su prazni
+    Object.keys(inputsValue).forEach((key) => {
+      if (inputsValue[key] === "") {
+        getOut = true;
+        errorInputs = errorInputs + key + ", ";
+      }
+    });
+
+    if (getOut) {
+      setError(
+        "Moraju svi biti inputi ispunjeni. Inputi koji se trebaju popuniti su:"
+      );
+      errorInputs.substring(0, errorInputs.length - 2);
+
+      return;
+    } else {
+      setError("");
+    }
+
+    const obj = inputsValue;
+    obj.id = "test";
+    //logika za request
+    fetch("http://localhost:3000/animals", {
+      method: "POST",
+      headers: dataHeaders,
+      body: JSON.stringify(inputsValue),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        console.log("Prošlo je sve dobro");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Container>
       <h1>Create a new animal</h1>
       <Devider />
+      {error && <div className="message message--error">{error}</div>}
       <div>
         <Field
           id="name"
@@ -59,7 +120,7 @@ const AnimalCreate = () => {
           onChange={(newValue) => handleInputsValue(newValue, "habitat")}
         />
       </div>
-      <Button text="Dodaj životinju" onClick={() => console.log(inputsValue)} />
+      <Button text="Dodaj životinju" onClick={() => onSubmit(inputsValue)} />
     </Container>
   );
 };

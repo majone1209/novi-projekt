@@ -6,7 +6,7 @@
   width: 17rem;
   border-radius: var(--border-rounded);
   top: 6rem;
-  left: 1rem;
+  left: -20rem;
   padding: 1.5rem 1rem;
   transition: 250ms ease-in-out;
 
@@ -20,7 +20,7 @@
     font-size: 1.25em;
     position: relative;
     text-decoration: none;
-  
+
     &.active,
     &:hover {
       &::before {

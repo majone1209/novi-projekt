@@ -29,7 +29,7 @@ function App() {
           <Route path="animals/new" element={<AnimalCreate />} />
           <Route
             path="animals/:animalId"
-            element={<>Došli mso na stranicu neke životinje</>}
+            element={<>Došli smo na stranicu neke životinje</>}
           />
           <Route path="*" element={<NoMatch />} />
         </Route>
