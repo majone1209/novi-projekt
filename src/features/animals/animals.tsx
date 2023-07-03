@@ -10,7 +10,6 @@ import { dataHeaders } from "./animal-create";
 import { useNavigate } from "react-router-dom";
 import Select from "../../components/select";
 
-
 export type AnimalType = {
   id: string;
   name: string;
@@ -115,7 +114,8 @@ const Animals = () => {
       <Loader isActive={loading} />
       <div className="animals__header">
         <h1 className="animals__title">Animals</h1>
-      <Select options={rppOptions}
+        <Select
+          options={rppOptions}
           onChange={(activeRpp) => setRpp(Number(activeRpp.value))}
           defaultValue={rppOptions[1]}
         />
@@ -125,7 +125,7 @@ const Animals = () => {
         {animalData.map((animal) => {
           return (
             <AnimalCard
-            onDelete={(id: string) => handleDelete(id)}
+              onDelete={(id: string) => handleDelete(id)}
               key={animal.name}
               animal={animal}
             />
