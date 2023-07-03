@@ -3,6 +3,9 @@ import imgDiet from "./../../assets/diet.png";
 import imgClass from "./../../assets/class.png";
 import imgHabitat from "./../../assets/habitat.png";
 import Button from "../../components/button";
+import { useNavigate } from "react-router-dom";
+import EditIcon from "../../assets/editIcon";
+import TrashIcon from "../../assets/trashIcon";
 
 type AnimalCardProps = {
   animal: AnimalType;
@@ -11,6 +14,7 @@ type AnimalCardProps = {
 
 const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
   const { name, animalClass, diet, species, habitat, id } = animal;
+  const navigate = useNavigate();
 
   return (
     <div className="card">
@@ -39,7 +43,15 @@ const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
         <img src={imgHabitat} alt="habitat animal" />
         <span>{habitat}</span>
       </div>
-      <Button text="Delete" color="red" onClick={() => onDelete(id)} />
+      <div>
+        <TrashIcon />
+        <Button text="Delete" color="red" onClick={() => onDelete(id)} />
+      </div>
+      <Button
+        text="Edit"
+        color="blue"
+        onClick={() => navigate(`/animals/${id}`)}
+      />
     </div>
   );
 };

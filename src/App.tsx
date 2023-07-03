@@ -13,6 +13,7 @@ import LoaderPage from "./features/loader/loader-page";
 import SelectPage from "./features/select-page/select-page";
 import Animals from "./features/animals/animals";
 import AnimalCreate from "./features/animals/animal-create";
+import AnimalEdit from "./features/animals/animal-edit";
 
 function App() {
   return (
@@ -27,10 +28,7 @@ function App() {
 
           <Route path="animals" element={<Animals />} />
           <Route path="animals/new" element={<AnimalCreate />} />
-          <Route
-            path="animals/:animalId"
-            element={<>Došli smo na stranicu neke životinje</>}
-          />
+          <Route path="animals/:animalId" element={<AnimalEdit />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
