@@ -5,13 +5,14 @@ import Field from "../../components/field";
 import { AnimalType } from "./animals";
 import { ValuesType } from "../contact/types";
 import Button from "../../components/button";
+import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
-const dataHeaders = {
+export const dataHeaders = {
   "Content-Type": "application/json",
 };
 
-const initialData: AnimalType = {
-  id: "",
+const initialData: Omit<AnimalType, "id"> = {
   name: "",
   species: "",
   animalClass: "",
@@ -23,6 +24,8 @@ const AnimalCreate = () => {
   const [inputsValue, setInputsValue] = useState<ValuesType>(initialData);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
+
   const handleInputsValue = (value: string, id: string) => {
     const newState: ValuesType = { ...inputsValue };
     newState[id] = value;
@@ -30,22 +33,22 @@ const AnimalCreate = () => {
   };
 
   const onSubmit = (inputsValue: ValuesType) => {
+    //Varijabala koja označava jeli se dogodio error
     let getOut = false;
+    //String u kojem držimo popis inputa u kojima se dogodio errror
     let errorInputs = "";
 
-    //const keys = Object.keys(inputsValue);
+    // Optimiziraniji način
+    // const keys = Object.keys(inputsValue);
+    // for (let i = 0; i < keys.length; i++) {
+    //   console.log(inputsValue[keys[i]]);
+    //   if (inputsValue[keys[i]] === "") {
+    //     getOut = true;
+    //     break;
+    //   }
+    // }
 
-    //
-    // Object.keys(inputsValue).forEach((key) => {
-    // console.log(inputsValue[key]);
-
-    // if (inputsValue[key] === "") {
-    //   getOut = true;
-    //    alert("ne može biti prazno");
-    //  }
-    //});
-
-    //mapiramo sve keyeje i provjeravamo koji su prazni
+    //Mapiramo sve keyjeve i provjeravamo koji su prazni
     Object.keys(inputsValue).forEach((key) => {
       if (inputsValue[key] === "") {
         getOut = true;
@@ -55,22 +58,22 @@ const AnimalCreate = () => {
 
     if (getOut) {
       setError(
-        "Moraju svi biti inputi ispunjeni. Inputi koji se trebaju popuniti su:"
+        "Moraju svi inputi biti popunjeni kako bi se životinja kreirala. Inputi koji se trebaju popuniti su: " +
+          errorInputs.substring(0, errorInputs.length - 2)
       );
-      errorInputs.substring(0, errorInputs.length - 2);
-
       return;
     } else {
       setError("");
     }
 
     const obj = inputsValue;
-    obj.id = "test";
+    obj.id = uuidv4();
+    console.log("json: ", JSON.stringify(obj));
     //logika za request
     fetch("http://localhost:3000/animals", {
       method: "POST",
       headers: dataHeaders,
-      body: JSON.stringify(inputsValue),
+      body: JSON.stringify(obj),
     })
       .then((res) => {
         if (res.ok) {
@@ -78,7 +81,7 @@ const AnimalCreate = () => {
         }
       })
       .then((data) => {
-        console.log("Prošlo je sve dobro");
+        navigate("/animals");
       })
       .catch((err) => console.log(err));
   };

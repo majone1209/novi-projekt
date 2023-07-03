@@ -2,6 +2,7 @@ import { AnimalType } from "./animals";
 import imgDiet from "./../../assets/diet.png";
 import imgClass from "./../../assets/class.png";
 import imgHabitat from "./../../assets/habitat.png";
+import Button from "../../components/button";
 
 type AnimalCardProps = {
   animal: AnimalType;
@@ -10,6 +11,7 @@ type AnimalCardProps = {
 
 const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
   const { name, animalClass, diet, species, habitat, id } = animal;
+
   return (
     <div className="card">
       <img
