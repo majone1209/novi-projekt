@@ -2,6 +2,7 @@
   padding: 1rem;
   background-color: var(--color-gray-300);
   border-radius: 5px;
+
   &__header {
     display: flex;
     align-items: center;
@@ -12,17 +13,44 @@
       height: 3rem;
       border-radius: 50%;
       margin-right: 0.5rem;
+      display: block;
+      transition: all 250ms ease-in-out;
+
+      &-wrapper {
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+          .card__header__img {
+            filter: brightness(0.6) blur(3px);
+          }
+          svg {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  
+    & svg {
+      transition: all 250ms ease-in-out;
+      display: block;
+      position: absolute;
+      top: 0.7rem;
+      left: 0.9rem;
+      opacity: 0;
+      color: rgb(247, 186, 6);
     }
   }
 
-  &__btn--red {
+  &__btn {
     padding: 1rem;
     display: flex;
     justify-content: center;
-    transition: all 250ms ease-in-out;
-    box-shadow: 0 0.125rem 0.75rem var(--color-red-500);
-    transition: all 250ms ease-in-out;
-    box-shadow: 0 0.125rem 0.75rem var(--color-red-500);
+    align-items: center;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    flex-grow: 1;
+
 
     @media (min-width: $media-sm) {
       bottom: 4rem;
@@ -34,7 +62,8 @@
     }
 
     & svg {
-      width: 2rem;
+      display: block;
+      margin-right: 0.5rem;
     }
   }
 

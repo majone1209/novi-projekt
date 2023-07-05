@@ -9,6 +9,7 @@ import { OptionType } from "../select-page/select-page";
 import { dataHeaders } from "./animal-create";
 import { useNavigate } from "react-router-dom";
 import Select from "../../components/select";
+import Modal from "../../components/modal";
 
 export type AnimalType = {
   id: string;
@@ -45,6 +46,7 @@ const Animals = () => {
   //rows per page (limit koliko itema vidimo od jednom)
   const [rpp, setRpp] = useState<number>(8);
   const [noOfItems, setNoOfItems] = useState<number>(0);
+  const [modalOpen, setModalOpen] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -125,7 +127,7 @@ const Animals = () => {
         {animalData.map((animal) => {
           return (
             <AnimalCard
-              onDelete={(id: string) => handleDelete(id)}
+            onDelete={(id: string) => setModalOpen(id)}
               key={animal.name}
               animal={animal}
             />
@@ -138,6 +140,19 @@ const Animals = () => {
         onPaginate={(activePage) => setPage(activePage)}
       />
       <FolatingButton onClick={() => navigate("/animals/new")} />
+      <Modal
+      size="sm"
+        isOpen={modalOpen ? true : false}
+        onClose={() => setModalOpen(null)}
+        title="Are you sure you want to delete?"
+        onSuccess={() => {
+          if (modalOpen) {
+            handleDelete(modalOpen);
+            setModalOpen(null);
+          }
+        }}
+      >It will be gone and It's not coming back.
+      </Modal>
     </Container>
   );
 };

@@ -6,6 +6,7 @@ import Button from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "../../assets/editIcon";
 import TrashIcon from "../../assets/trashIcon";
+import ButtonDelete from "../../components/button-delete";
 
 type AnimalCardProps = {
   animal: AnimalType;
@@ -17,19 +18,23 @@ const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="card">
-      <img
+    <div className="card card--animal">
+      <div className="card__header">
+        <div className="card__header__img-wrapper" onClick={() => navigate(`/animals/${id}`)}>
+          <img
         className="card__header__img"
         width={"100%"}
         src={`http://source.unsplash.com/random/500x500/?${animal.name.replace(
           " ",
           "-"
         )}`}
-        alt="image animal"
-      />
+        alt="image animal"/>
+        <EditIcon />
+        </div>
       <div>
         <div className="card__title">{name}</div>
         <div className="card__subtitle">{species}</div>
+      </div>
       </div>
       <div className="card__row">
         <img src={imgClass} alt="class animal" />
@@ -44,14 +49,10 @@ const AnimalCard = ({ animal, onDelete }: AnimalCardProps) => {
         <span>{habitat}</span>
       </div>
       <div>
-        <TrashIcon />
-        <Button text="Delete" color="red" onClick={() => onDelete(id)} />
+        <div className="card__btn">
+        <ButtonDelete text="Delete" color="red" onClick={() => onDelete(id)}/>
+        </div>
       </div>
-      <Button
-        text="Edit"
-        color="blue"
-        onClick={() => navigate(`/animals/${id}`)}
-      />
     </div>
   );
 };

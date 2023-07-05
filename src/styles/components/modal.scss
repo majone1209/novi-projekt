@@ -37,6 +37,13 @@
       flex-grow: 1;
       overflow-y: auto;
     }
+
+    &--sm {
+      width: 30rem;
+      height: unset;
+      top: 38vh;
+      left:34.5vw;
+    }
     &__footer {
       flex-shrink: 0;
       button {
