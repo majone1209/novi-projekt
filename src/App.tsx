@@ -14,6 +14,8 @@ import SelectPage from "./features/select-page/select-page";
 import Animals from "./features/animals/animals";
 import AnimalCreate from "./features/animals/animal-create";
 import AnimalEdit from "./features/animals/animal-edit";
+import Homepage from "./features/quiz-app";
+import QuizzApp from "./features/quiz-app";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="quizz" element={<QuizzApp />} />
           <Route path="progress-bar" element={<ProgressbarPage />} />
           <Route path="loader" element={<LoaderPage />} />
           <Route path="select" element={<SelectPage />} />
